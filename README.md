@@ -2,6 +2,10 @@
 
 A modern and visually enhanced version of the classic Snake game, built with HTML5, CSS3, and JavaScript. Dive into a neon-drenched world with dynamic particle effects, challenging power-ups, and an engaging achievement system.
 
+## 🚀 Live Demo
+
+Play Neon Snake Nexus here: [https://surajsk2003.github.io/Neon-Snake-Nexus/](https://surajsk2003.github.io/Neon-Snake-Nexus/)
+
 ## 🌟 Features
 
 *   **Vibrant Neon Aesthetics:** Eye-catching visuals with glowing elements, particle effects, and smooth animations.
