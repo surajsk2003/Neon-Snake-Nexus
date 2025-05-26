@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> NEON SNAKE NEXUS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-particles"></div>
+  
+  <div class="page-container">
+    <div class="game-container">
+      <h1 class="game-title">NEON SNAKE NEXUS</h1>
+      
+      <div class="difficulty-selector">
+        <h3 style="color: #00ccff; font-family: 'Rajdhani', sans-serif; font-weight: 600; margin-bottom: 10px;">SELECT DIFFICULTY</h3>
+        <div class="difficulty-buttons">
+          <div class="difficulty-btn" data-difficulty="easy">EASY</div>
+          <div class="difficulty-btn active" data-difficulty="normal">NORMAL</div>
+          <div class="difficulty-btn" data-difficulty="hard">HARD</div>
+          <div class="difficulty-btn" data-difficulty="insane">INSANE</div>
+        </div>
+      </div>
+      
+      <div class="game-stats">
+        <div class="stat-card">
+          <div class="stat-label">SCORE</div>
+          <div class="stat-value" id="scoreDisplay">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">LEVEL</div>
+          <div class="stat-value" id="levelDisplay">1</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">HIGH SCORE</div>
+          <div class="stat-value" id="highScoreDisplay">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">COMBO</div>
+          <div class="stat-value" id="comboDisplay">0</div>
+        </div>
+      </div>
+      
+      <canvas id="gameCanvas" class="game-canvas" width="500" height="500"></canvas>
+      
+      <div class="power-ups">
+        <div class="power-up-card">
+          <div class="power-up-icon" style="color: #ffff00;">⚡</div>
+          <div class="power-up-title" style="color: #ffff00;">SPEED BOOST</div>
+          <div class="power-up-desc">Temporary speed increase</div>
+        </div>
+        <div class="power-up-card">
+          <div class="power-up-icon" style="color: #ff00ff;">💎</div>
+          <div class="power-up-title" style="color: #ff00ff;">BONUS POINTS</div>
+          <div class="power-up-desc">Extra score multiplier</div>
+        </div>
+        <div class="power-up-card">
+          <div class="power-up-icon" style="color: #00ffff;">🛡️</div>
+          <div class="power-up-title" style="color: #00ffff;">SHIELD</div>
+          <div class="power-up-desc">Temporary invincibility</div>
+        </div>
+        <div class="power-up-card">
+          <div class="power-up-icon" style="color: #ff4444;">🔥</div>
+          <div class="power-up-title" style="color: #ff4444;">FIRE MODE</div>
+          <div class="power-up-desc">Burns through walls</div>
+        </div>
+      </div>
+      
+      <div class="game-controls">
+        <div class="control-panel">
+          <h3>MOVEMENT</h3>
+          <div class="control-row">
+            <span class="key">↑</span>
+          </div>
+          <div class="control-row">
+            <span class="key">←</span>
+            <span class="key">↓</span>
+            <span class="key">→</span>
+          </div>
+        </div>
+        
+        <div class="control-panel">
+          <h3>GAME CONTROLS</h3>
+          <div class="control-row">
+            <span class="key">SPACE</span>
+          </div>
+          <div style="text-align: center; margin-top: 10px; color: #aaa; font-family: 'Rajdhani', sans-serif;">
+            Pause/Resume
+          </div>
+          <div class="control-row" style="margin-top: 15px;">
+            <span class="key">R</span>
+          </div>
+          <div style="text-align: center; margin-top: 10px; color: #aaa; font-family: 'Rajdhani', sans-serif;">
+            Restart Game
+          </div>
+        </div>
+      </div>
+      
+      <div class="achievements">
+        <h3>ACHIEVEMENTS</h3>
+        <div class="achievement-list">
+          <div class="achievement" id="achievement-first-food">
+            <div class="achievement-icon">🍎</div>
+            <div class="achievement-title">FIRST BITE</div>
+          </div>
+          <div class="achievement" id="achievement-score-100">
+            <div class="achievement-icon">💯</div>
+            <div class="achievement-title">CENTURY</div>
+          </div>
+          <div class="achievement" id="achievement-level-5">
+            <div class="achievement-icon">🚀</div>
+            <div class="achievement-title">SPEEDSTER</div>
+          </div>
+          <div class="achievement" id="achievement-length-10">
+            <div class="achievement-icon">🐍</div>
+            <div class="achievement-title">GROWING</div>
+          </div>
+          <div class="achievement" id="achievement-combo-5">
+            <div class="achievement-icon">🔥</div>
+            <div class="achievement-title">COMBO MASTER</div>
+          </div>
+          <div class="achievement" id="achievement-survive-60">
+            <div class="achievement-icon">⏰</div>
+            <div class="achievement-title">SURVIVOR</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer">
+        <p>Use arrow keys to move, SPACE to pause, R to restart</p>
+        <p>Collect power-ups for special abilities and bonus points!</p>
+        <p class="version">NEON SNAKE NEXUS v2.0 - Enhanced Edition</p>
+      </div>
+    </div>
+    
+    <div class="game-over-screen" id="gameOverScreen">
+      <div class="game-over-title">GAME OVER</div>
+      <div class="final-score" id="finalScore">Final Score: 0</div>
+      <div id="newHighScore" style="color: #ffff00; font-size: 1.5rem; margin-bottom: 20px; display: none;">
+        🏆 NEW HIGH SCORE! 🏆
+      </div>
+      <div>
+        <button class="button" onclick="restartGame()">PLAY AGAIN</button>
+        <button class="button secondary" onclick="showDifficultySelect()">CHANGE DIFFICULTY</button>
+      </div>
+    </div>
+    
+    <div class="pause-screen" id="pauseScreen">
+      <div class="pause-title">PAUSED</div>
+      <div style="color: #00ff88; font-size: 1.2rem; margin-bottom: 20px;">Press SPACE to continue</div>
+      <div>
+        <button class="button" onclick="togglePause()">RESUME</button>
+        <button class="button secondary" onclick="restartGame()">RESTART</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
