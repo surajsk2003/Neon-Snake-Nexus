@@ -81,7 +81,7 @@ No special build steps or dependencies are required.
 
 ---
 
-Enjoy playing Neon Snake Nexus!
+Enjoy playing Neon Snake Nexus!!
 
 ```
 
